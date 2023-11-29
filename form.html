@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            background-color: rgb(177, 198, 239);
+        }
+
+        #message {
+            color: red;
+        }
+    </style>
+    <script>
+        function checkInputLength() {
+            var cardNumberInput = document.getElementById('card_number');
+            var messageElement = document.getElementById('message');
+
+            // Get the length of the card number input value
+            var cardNumberLength = cardNumberInput.value.length;
+
+            // Check if the length is less than 16
+            if (cardNumberLength < 16) {
+                messageElement.textContent = 'Card number must be 16 digits.';
+            }
+            else if (cardNumberLength > 16) {
+                messageElement.textContent = 'Card number must be 16 digits.';
+            }  else {
+                messageElement.textContent = ''; // Clear the message if length is 16 or more
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <h1>Payment Form</h1>
+        <p>Required *</p>
+        <h2>Contact Information</h2>
+        <p><sup>*</sup>Name: <input type="text" name="name" required></p>
+        <fieldset>
+            <legend><sup>*</sup>Gender</legend>
+            <p>
+                Male <input type="radio" name="gender" id="male" required>
+                Female <input type="radio" name="gender" id="female" required>
+                Other <input type="radio" name="gender" id="other" required>
+            </p>
+        </fieldset>
+
+        <p><sup>*</sup>Address: <textarea name="address" id="address" cols="100" rows="10" required></textarea></p>
+        <p><sup>*</sup>Email: <input type="email" name="email" id="email" required></p>
+        <p><sup>*</sup>Pincode: <input type="number" name="pincode" id="pincode" required></p>
+
+        <h2>Card Payment</h2>
+        <p><sup>*</sup>Card Type: 
+            <select name="card_type" id="card_type" required>
+                <option value="">--Select a Card Type--</option>
+                <option value="debit">Debit Card</option>
+                <option value="credit">Credit Card</option>
+            </select>
+        </p>
+
+        <p><sup>*</sup>Card Number: <input type="number" name="card_number" id="card_number" oninput="checkInputLength()" required></p>
+        <p id="message"></p>
+        <p><sup>*</sup>Expiring Date: <input type="date" name="exp_date" id="exp_date" required></p>
+        <p><sup>*</sup>CVV: <input type="password" name="cvv" id="cvv" required></p>
+
+        <input type="submit" value="Pay Now">
+    </form>
+</body>
+</html>
